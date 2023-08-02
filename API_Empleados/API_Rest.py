@@ -13,9 +13,9 @@ if response.status_code == 200:
     data = response.json()
 
     # Cantidad de empleados
-    total_employees = len(data)
+    total_employees = len(data['data'])  # Corrección aquí
 
-    # Promedio del salario de los empleados
+    # Promedio de salario de los empleados
     total_salary = sum(float(employee['employee_salary']) for employee in data['data'])
     average_salary = total_salary / total_employees
 
@@ -33,6 +33,7 @@ if response.status_code == 200:
     min_age = min(ages)
     max_age = max(ages)
 
+    # Imprimir los resultados
     print(f"Número de empleados: {total_employees}")
     print(f"Promedio de salario: {average_salary}")
     print(f"Promedio de edad: {average_age}")
@@ -42,4 +43,4 @@ if response.status_code == 200:
     print(f"Edad mayor: {max_age}")
 
 else:
-    print("Error al obtener los datos de empleados. Código de estado:"), response.status_code
+    print("Error al obtener los datos de empleados. Código de estado:", response.status_code)
